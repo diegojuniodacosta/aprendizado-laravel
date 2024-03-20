@@ -34,8 +34,11 @@ class DiasRepetidosController extends Controller
 
     public function destroy($id)
     {
-        $this->diasRepetidosRepository->deleteDay($id);
-        return redirect()->back()->with('success', 'Registro excluído com sucesso.');
+        $dayExcluded = $this->diasRepetidosRepository->deleteDay($id);
 
+        if ($dayExcluded){
+            return redirect()->back()->with('success', 'Registro excluído com sucesso.');
+        }
+        return redirect()->back()->with('error', 'Registro não foi excluído');
     }
 }

@@ -20,10 +20,8 @@ Route::get('/', function () {
 
 Route::get('/consultar-dias-repetidos', [DiasRepetidosController::class, 'index']);
 
-//Route::get('/dias-repetidos', [DiasRepetidosController::class, 'show']);
-
-Route::get('/dias-repetidos', [DiasRepetidosController::class, 'show'])->name('diasrepetidos.show');
-
+Route::get('/dias-repetidos', [DiasRepetidosController::class, 'show'])
+    ->name('diasrepetidos.show');
 
 Route::delete('/dias-deletados/{id}', [DiasRepetidosController::class, 'destroy'])
     ->name('diasdeletados.destroy');

@@ -4,7 +4,6 @@ namespace App\Models\Repositories;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class DiasRepetidosRepository extends Model
@@ -14,8 +13,14 @@ class DiasRepetidosRepository extends Model
     public function getDayRepeated($dataInicial, $dataFinal, string|null $nomeColaborador)
     {
         return DB::table('dias_repetidos')
-            ->select('dias_repetidos.id', 'dias_repetidos.data', 'colaboradores.nome')
-            ->join('colaboradores', 'dias_repetidos.colaborador_id', '=', 'colaboradores.id')
+            ->select('dias_repetidos.id', 'dias_repetidos.data', 'colaboradores.nome',
+                'justifications.descricao')
+            ->join('colaboradores', 'dias_repetidos.colaborador_id', '=',
+                'colaboradores.id')
+
+            ->leftJoin('justifications', 'dias_repetidos.id', '=',
+                'justifications.dia_repetido_id')
+
             ->whereBetween('dias_repetidos.data', [$dataInicial, $dataFinal])
             ->when($nomeColaborador !== null, function ($query) use ($nomeColaborador) {
                 return $query->where('colaboradores.nome', $nomeColaborador);

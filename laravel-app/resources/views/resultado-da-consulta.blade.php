@@ -17,6 +17,7 @@
                     <th>ID</th>
                     <th>Data</th>
                     <th>Colaborador</th>
+                    <th>Justificativa</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <td>{{ $dia->id }}</td>
                         <td>{{ $dia->data }}</td>
                         <td>{{ $dia->nome }}</td>
+                        <td>{{ $dia->descricao }}</td>
                         <td>
                             <form action="{{ route('diasdeletados.destroy', ['id' => $dia->id]) }}" method="POST">
                                 @csrf
