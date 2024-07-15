@@ -14,5 +14,6 @@ class Car extends Model
         'modelo',
         'ano_fabricacao',
         'cor',
+        'preco'
     ];
 }

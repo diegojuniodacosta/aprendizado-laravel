@@ -45,6 +45,12 @@ Route::get('dashboard-edit', [ClientController::class, 'dashboardEdit']);
 Route::get('/carros', [CarController::class, 'index'])
     ->name('carros.index');
 
+Route::get('carros-create', [CarController::class, 'create'])
+    ->name('carros.create');
+
+Route::post('carros-store', [CarController::class, 'store'])
+    ->name('carros.store');
+
 Route::get('carros-edit/{car}', [CarController::class, 'edit'])
     ->name('carros.edit');
 

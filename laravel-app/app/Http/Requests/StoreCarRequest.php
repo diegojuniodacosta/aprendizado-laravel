@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class StoreCarRequest extends FormRequest
 {
@@ -11,7 +14,7 @@ class StoreCarRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +25,11 @@ class StoreCarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+
         ];
     }
+
+
+
+
 }

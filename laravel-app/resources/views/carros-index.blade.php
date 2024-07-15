@@ -57,7 +57,9 @@
 
     <div class="table-container custom text-center mt-5">
         <div class="d-flex justify-content-between align-items-center">
-            <a href="{{-- route('carros.create') --}}" class="btn btn-success mb-3">Novo Carro</a>
+            <a href="{{ route('carros.create') }}" class="btn btn-success mb-3">
+                Novo Carro
+            </a>
         </div>
         <h1 class="mb-4">Lista de Carros</h1>
         <br>

@@ -31,7 +31,7 @@ class CarObserver
     public function creating(Car $car): void
     {
         $this->saveAuditLogCar(ActionsUtils::CREATION,
-            'Criação do Carrro: ' . $car->modelo);
+            'Criação do Carro: ' . $car->modelo);
     }
 
     public function created(Car $car): void

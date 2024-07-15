@@ -25,7 +25,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('carros-create');
     }
 
     /**
@@ -33,7 +33,12 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        //
+
+        Car::create($request->all());
+
+        return redirect()
+            ->route('carros.index')
+            ->with('success', 'Carro criado com sucesso!');
     }
 
     /**
