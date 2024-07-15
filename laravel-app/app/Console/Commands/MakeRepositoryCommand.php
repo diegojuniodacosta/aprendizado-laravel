@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 
 class MakeRepositoryCommand extends Command
 {
@@ -26,8 +27,15 @@ class MakeRepositoryCommand extends Command
      */
     public function handle(): void
     {
+
         $name = $this->argument('name');
-        $this->call('make:model',
-            ['name' => 'Repositories/' . $name . 'Repository']);
+        $modelName = Str::studly($name) . 'Repository'; // Converte o nome para StudlyCase e adiciona 'Repository'
+        $namespace = 'App\\Repositories'; // Namespace para os modelos do repositório
+
+        // Chama o comando 'make:model' com o nome do modelo e o namespace
+        $this->call('make:model', [
+            'name' => $namespace . '\\' . $modelName,
+        ]);
+
     }
 }
