@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Utils\ActionsUtils;
 use App\Utils\UpdatedObserverUtils;
 use Illuminate\Support\Facades\Auth;
+use Throwable;
 
 class CarObserver
 {
@@ -19,13 +20,17 @@ class CarObserver
 
     protected function saveAuditLogCar($action, $description): void
     {
-        $this->auditLogCar
-            ->query()
-            ->create([
-            'action' => $action,
-            'user_name' => Auth::user()->name ?? 'Sistema',
-            'description' => $description
-        ]);
+        try {
+            $this->auditLogCar
+                ->query()
+                ->create([
+                    'action' => $action,
+                    'user_name' => Auth::user()->name ?? 'Sistema',
+                    'description' => $description
+                ]);
+        } catch (Throwable $e){
+            "Log de erro" . $e->getMessage();
+        };
     }
 
     public function creating(Car $car): void
